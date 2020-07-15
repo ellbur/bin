@@ -1,0 +1,14 @@
+#!/usr/bin/python3
+
+from quickfiles import p
+from subprocess import Popen, PIPE
+import sys
+
+files = [p(f) for f in sys.argv[1:]]
+names = list(sorted([f.name for f in files]))
+output = '\n'.join(names)
+
+proc = Popen(['wl-copy'], stdin=PIPE)
+proc.stdin.write(output.encode('utf-8'))
+
+

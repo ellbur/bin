@@ -1,0 +1,4 @@
+#!/bin/zsh
+
+for f ($*) /home/owen/.odrive-agent/bin/odrive sync -- $f
+
