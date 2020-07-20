@@ -1,0 +1,15 @@
+#!/bin/zsh
+
+pw="$(mkpw)"
+python3 setup.py bdist_wheel
+latest_file=(./dist/*.whl(om[1]))
+latest_name=${latest_file:t}
+date=$(date +'%F')
+key='nu/dante-installation-sets/'$date'/'"$(mkpw)"'/'"$latest_name"
+target='s3://ellbur-misc-stuff/'"$key"
+echo $key
+echo $target
+aws s3 cp $latest_file $target
+aws s3api put-object-acl --bucket ellbur-misc-stuff --key $key --acl public-read
+echo 'https://d35yeutfwbbcir.cloudfront.net/'"$key"
+

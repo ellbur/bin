@@ -1,0 +1,4 @@
+#!/bin/zsh
+
+/bin/sh -i -c "$1"
+

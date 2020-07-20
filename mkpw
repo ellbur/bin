@@ -1,0 +1,17 @@
+#!/usr/bin/python
+
+import random
+
+letters = [chr(i) for i in range(ord('a'), ord('z')+1)]
+numbers = [chr(i) for i in range(ord('0'), ord('9')+1)]
+
+def a(): return random.choice(letters) 
+def d(): return random.choice(numbers)
+
+x = [a() for _ in range(7)] + [d() for _ in range(3)] 
+random.shuffle(x)
+
+pw = ''.join(x)
+
+print(pw)
+
