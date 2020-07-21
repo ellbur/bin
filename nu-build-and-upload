@@ -1,6 +1,5 @@
 #!/bin/zsh
 
-pw="$(mkpw)"
 python3 setup.py bdist_wheel
 latest_file=(./dist/*.whl(om[1]))
 latest_name=${latest_file:t}
