@@ -1,0 +1,34 @@
+#!/usr/bin/rakudo
+
+# vim: ft=perl6
+
+use File::HomeDir;
+
+sub MAIN($existing_path) {
+    my $home = File::HomeDir.my-home.IO;
+    my $config = $home.add('.config');
+    my $dotfiles = $home.add('dotfiles');
+
+    my $existing_file = IO::Path.new(IO::Path.new($existing_path).absolute);
+
+    my $identifier;
+    
+    my $config_prefix = $config.absolute ~ "/";
+    if ($existing_file.absolute.starts-with($config_prefix)) {
+        $identifier = $existing_file.relative($config);
+    }
+    else {
+        $identifier = $existing_file.relative($home);
+    }
+    
+    my $dotfiles_file = $dotfiles.add($identifier);
+
+    $existing_file.copy($dotfiles_file);
+    my $link_reference = $dotfiles_file.relative($existing_file.parent);
+    
+    my $existing_name = $existing_file.basename;
+    $existing_file.unlink();
+    chdir $existing_file.parent;
+    run 'ln', '-s', $link_reference, $existing_name;
+}
+
