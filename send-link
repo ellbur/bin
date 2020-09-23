@@ -7,5 +7,6 @@ key=$date'/'"$(mkpw)"'/'"$name"
 target='s3://ellbur-misc-stuff/'"$key"
 aws s3 cp $file $target
 aws s3api put-object-acl --bucket ellbur-misc-stuff --key $key --acl public-read
-echo 'https://d35yeutfwbbcir.cloudfront.net/'"$key"
+key_with_pluses="$(add-pluses $key)"
+echo 'https://d35yeutfwbbcir.cloudfront.net/'"$key_with_pluses"
 
