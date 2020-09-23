@@ -1,0 +1,9 @@
+#!/usr/bin/rakudo
+
+sub MAIN($key) {
+    my $input = $key;
+    my $output = $input.subst(/' '/, '+', :g);
+
+    say $output;
+}
+
