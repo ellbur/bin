@@ -1,0 +1,4 @@
+#!/bin/zsh
+
+echo b >> /tmp/foo.txt
+

@@ -10,6 +10,28 @@ while [ -e $dir_of_file/__init__.py ] ; do
     dir_of_file=${up:a}
 done
 
+steps=0
+while true ; do
+    if [[ "$(readlink -f $dir_of_file)" == "$(readlink -f $HOME)" ]] ; then
+        break
+    fi
+    
+    if [[ "$(readlink -f $dir_of_file)" == "$(readlink -f /)" ]] ; then
+        break
+    fi
+    
+    if [ -e $dir_of_file/.pylintrc ] ; then
+        break
+    fi
+
+    if (( $steps >= 10 )) ; then
+        break
+    fi
+    
+    dir_of_file=$dir_of_file/..
+    steps=$(($steps + 1))
+done
+
 cd $dir_of_file
 
 ~/.local/bin/pylint $*

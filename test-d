@@ -1,0 +1,4 @@
+#!/bin/zsh
+
+echo d >> /tmp/foo.txt
+

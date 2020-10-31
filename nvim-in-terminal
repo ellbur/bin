@@ -1,4 +1,4 @@
 #!/bin/zsh
 
-gnome-terminal --window-with-profile=nvim --title=nvim --command="$HOME/bin/sh-interactive-nvim ${1:q}"
+tilix --profile=nvim --title=nvim --command="$HOME/bin/sh-interactive-nvim ${1:q}"
 
