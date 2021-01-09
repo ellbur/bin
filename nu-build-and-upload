@@ -8,7 +8,7 @@ key='nu/dante-installation-sets/'$date'/'"$(mkpw)"'/'"$latest_name"
 target='s3://ellbur-misc-stuff/'"$key"
 echo $key
 echo $target
-aws s3 cp $latest_file $target
-aws s3api put-object-acl --bucket ellbur-misc-stuff --key $key --acl public-read
+aws s3 cp $latest_file $target --profile dante-upload
+aws s3api put-object-acl --bucket ellbur-misc-stuff --key $key --acl public-read --profile dante-upload
 echo 'https://d35yeutfwbbcir.cloudfront.net/'"$key"
 
