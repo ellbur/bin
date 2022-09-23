@@ -1,0 +1,5 @@
+#!/bin/zsh
+
+monitor="$(swaymsg -t get_outputs | jq '[.[].focused] | index(true)')"
+rofi -monitor "XWAYLAND$monitor" -theme Arc-Dark -show run
+
