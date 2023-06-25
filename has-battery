@@ -2,8 +2,10 @@
 
 bats=(/sys/class/power_supply/BAT*(N))
 if (($#bats == 0)) ; then
+  echo no
   exit 1
 else
+  echo yes
   exit 0
 fi
 
