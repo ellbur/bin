@@ -1,0 +1,12 @@
+#!/bin/zsh
+
+echo 'Starting...'
+echo "$(date +%T.%N)"
+
+while true ; do
+  for i in $(seq 1 100) ; do
+    head -c 20000 /dev/urandom | sha1sum >/dev/null
+  done
+  echo "$(date +%T.%N)"
+done
+
