@@ -1,5 +1,7 @@
 #!/bin/zsh
 
+set -e
+
 file=$1
 name=${file:t}
 date="$(date +'%F')"
