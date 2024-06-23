@@ -30,3 +30,5 @@ gtk-application-prefer-dark-theme=0' > ~/.config/gtk-4.0/settings.ini
 echo '[main]
 include = ~/.config/foot/colors-light.ini' > ~/.config/foot/colors.ini
 
+env -u SESSION_MANAGER lookandfeeltool -a org.manjaro.breath.desktop
+
