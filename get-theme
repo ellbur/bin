@@ -1,0 +1,10 @@
+#!/bin/zsh
+
+theme="$(dconf read /theme)"
+
+if [ "$theme" != "'light'" ] ; then
+  echo dark
+else
+  echo light
+fi
+

@@ -3,8 +3,6 @@
 dconf write /theme "'light'"
 dconf write /org/gnome/desktop/interface/gtk-theme "'Orchis-Light'" 
 
-echo 'include ~/.config/sway/colors-light' > ~/.config/sway/colors
-
 echo 'gtk-theme-name = "Orchis-Light"' > ~/.gtkrc-2.0
 
 echo '[Settings]
@@ -29,4 +27,8 @@ gtk-application-prefer-dark-theme=0' > ~/.config/gtk-4.0/settings.ini
 
 echo '[main]
 include = ~/.config/foot/colors-light.ini' > ~/.config/foot/colors.ini
+
+gsettings set org.gnome.desktop.interface color-scheme 'prefer-light'
+
+cp -f ~/.config/waybar/style-light.css ~/.config/waybar/style.css
 
