@@ -32,3 +32,5 @@ gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 
 cp -f ~/.config/waybar/style-dark.css ~/.config/waybar/style.css
 
+env -u SESSION_MANAGER lookandfeeltool -a org.manjaro.breath-dark.desktop
+

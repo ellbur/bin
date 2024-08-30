@@ -32,3 +32,5 @@ gsettings set org.gnome.desktop.interface color-scheme 'prefer-light'
 
 cp -f ~/.config/waybar/style-light.css ~/.config/waybar/style.css
 
+env -u SESSION_MANAGER lookandfeeltool -a org.manjaro.breath.desktop
+
