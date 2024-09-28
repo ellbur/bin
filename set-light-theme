@@ -34,3 +34,5 @@ cp -f ~/.config/waybar/style-light.css ~/.config/waybar/style.css
 
 env -u SESSION_MANAGER lookandfeeltool -a org.manjaro.breath.desktop
 
+sudo ~/bin/set-etc-issue-light
+

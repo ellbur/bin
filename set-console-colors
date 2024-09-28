@@ -2,7 +2,7 @@
 
 # https://askubuntu.com/questions/147462/how-can-i-change-the-tty-colors/153493#153493
 if [ "$TERM" = "linux" ]; then
-  if [ ~/bin/is-light-theme ] ; then
+  if ~/bin/is-light-theme ; then
     echo -en "\e]P0ffffff" #black
     echo -en "\e]P8000000" #darkgrey
     echo -en "\e]P1000000" #darkred

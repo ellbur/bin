@@ -34,3 +34,5 @@ cp -f ~/.config/waybar/style-dark.css ~/.config/waybar/style.css
 
 env -u SESSION_MANAGER lookandfeeltool -a org.manjaro.breath-dark.desktop
 
+sudo ~/bin/set-etc-issue-dark
+

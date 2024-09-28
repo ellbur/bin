@@ -1,0 +1,28 @@
+#!/bin/zsh
+
+clear > /etc/issue
+echo -en "\e]P0ffffff" >> /etc/issue
+echo -en "\e]P8000000" >> /etc/issue
+echo -en "\e]P1000000" >> /etc/issue
+echo -en "\e]P9000000" >> /etc/issue
+echo -en "\e]P2000000" >> /etc/issue
+echo -en "\e]PA000000" >> /etc/issue
+echo -en "\e]P3000000" >> /etc/issue
+echo -en "\e]PB000000" >> /etc/issue
+echo -en "\e]P4000000" >> /etc/issue
+echo -en "\e]PC000000" >> /etc/issue
+echo -en "\e]P5000000" >> /etc/issue
+echo -en "\e]PD000000" >> /etc/issue
+echo -en "\e]P6000000" >> /etc/issue
+echo -en "\e]PE000000" >> /etc/issue
+echo -en "\e]P7000000" >> /etc/issue
+echo -en "\e]PF000000" >> /etc/issue
+clear >> /etc/issue
+
+echo '' >> /etc/issue
+echo '\s' >> /etc/issue
+echo '\l' >> /etc/issue
+echo '\n' >> /etc/issue
+echo '\r' >> /etc/issue
+echo '\v' >> /etc/issue
+
