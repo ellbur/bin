@@ -3,34 +3,22 @@
 dconf write /theme "'light'"
 dconf write /org/gnome/desktop/interface/gtk-theme "'Orchis-Light'" 
 
-echo 'gtk-theme-name = "Orchis-Light"' > ~/.gtkrc-2.0
+/bin/rm -f ~/.gtkrc-2.0
+ln -s .gtkrc-2.0-light ~/.gtkrc-2.0
 
-echo '[Settings]
-gtk-theme-name=Orchis-Light
-gtk-icon-theme-name=hicolor
-gtk-font-name=Sans 10
-gtk-cursor-theme-size=0
-gtk-toolbar-style=GTK_TOOLBAR_BOTH
-gtk-toolbar-icon-size=GTK_ICON_SIZE_LARGE_TOOLBAR
-gtk-button-images=1
-gtk-menu-images=1
-gtk-enable-event-sounds=1
-gtk-enable-input-feedback-sounds=1
-gtk-xft-antialias=1
-gtk-xft-hinting=1
-gtk-xft-hintstyle=hintfull
-gtk-application-prefer-dark-theme=0' > ~/.config/gtk-3.0/settings.ini
+/bin/rm -f ~/.config/gtk-3.0/settings.ini
+ln -s settings-light.ini ~/.config/gtk-3.0/settings.ini
 
-echo '[Settings]
-gtk-theme-name=Orchis-Light
-gtk-application-prefer-dark-theme=0' > ~/.config/gtk-4.0/settings.ini
+/bin/rm -f ~/.config/gtk-4.0/settings.ini
+ln -s settings-light.ini ~/.config/gtk-4.0/settings.ini
 
 echo '[main]
 include = ~/.config/foot/colors-light.ini' > ~/.config/foot/colors.ini
 
 gsettings set org.gnome.desktop.interface color-scheme 'prefer-light'
 
-cp -f ~/.config/waybar/style-light.css ~/.config/waybar/style.css
+/bin/rm -f ~/.config/waybar/style.css
+ln -s style-dark.css ~/.config/waybar/style.css
 
 env -u SESSION_MANAGER lookandfeeltool -a org.manjaro.breath.desktop
 
