@@ -1,26 +1,2 @@
 #!/bin/zsh
-
-dconf write /theme "'light'"
-dconf write /org/gnome/desktop/interface/gtk-theme "'Orchis-Light'" 
-
-/bin/rm -f ~/.gtkrc-2.0
-ln -s .gtkrc-2.0-light ~/.gtkrc-2.0
-
-/bin/rm -f ~/.config/gtk-3.0/settings.ini
-ln -s settings-light.ini ~/.config/gtk-3.0/settings.ini
-
-/bin/rm -f ~/.config/gtk-4.0/settings.ini
-ln -s settings-light.ini ~/.config/gtk-4.0/settings.ini
-
-echo '[main]
-include = ~/.config/foot/colors-light.ini' > ~/.config/foot/colors.ini
-
-gsettings set org.gnome.desktop.interface color-scheme 'prefer-light'
-
-/bin/rm -f ~/.config/waybar/style.css
-ln -s style-dark.css ~/.config/waybar/style.css
-
-env -u SESSION_MANAGER lookandfeeltool -a org.manjaro.breath.desktop
-
-sudo ~/bin/set-etc-issue-light
-
+exec ~/bin/set-theme light

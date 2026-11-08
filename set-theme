@@ -1,0 +1,34 @@
+#!/bin/zsh
+# Usage: set-theme dark|light
+#
+# Everything written here is local machine state, never a file tracked in
+# ~/dotfiles: the settings.ini / style.css / .gtkrc-2.0 symlinks pick between
+# tracked -dark/-light files, and foot's theme.ini is a local file that
+# chezmoi only creates if missing.
+
+mode=$1
+case $mode in
+  dark)  gtk_theme=Orchis-Dark;  plasma_theme=org.manjaro.breath-dark.desktop; foot_signal=USR1 ;;
+  light) gtk_theme=Orchis-Light; plasma_theme=org.manjaro.breath.desktop;      foot_signal=USR2 ;;
+  *) echo "usage: set-theme dark|light" >&2; exit 2 ;;
+esac
+
+dconf write /theme "'$mode'"
+dconf write /org/gnome/desktop/interface/gtk-theme "'$gtk_theme'"
+gsettings set org.gnome.desktop.interface color-scheme "prefer-$mode"
+
+ln -sfn .gtkrc-2.0-$mode ~/.gtkrc-2.0
+ln -sfn settings-$mode.ini ~/.config/gtk-3.0/settings.ini
+ln -sfn settings-$mode.ini ~/.config/gtk-4.0/settings.ini
+ln -sfn style-$mode.css ~/.config/waybar/style.css
+
+# foot: colors.ini (tracked) has [colors-dark] and [colors-light]; theme.ini
+# (local) picks the one new windows start with. The signal switches windows
+# that are already open (USR1 = dark, USR2 = light).
+printf '[main]\ninitial-color-theme=%s\n' $mode > ~/.config/foot/theme.ini
+pkill -$foot_signal -x foot
+pkill -$foot_signal -x footclient
+
+env -u SESSION_MANAGER lookandfeeltool -a $plasma_theme
+
+sudo ~/bin/set-etc-issue-$mode
