@@ -1,0 +1,34 @@
+#!/bin/zsh
+# Sync atuin history, then write it all to a plain-text TSV for Syncthing.
+# Columns: UTC time, exit code, duration (ms), host, directory, command.
+# Commands dated 2000-01-01 were imported from an archive with no timestamps.
+set -u
+setopt err_return
+
+data=~/.local/share/atuin
+out=~/stuff/history/atuin-export
+host_id=$(<$data/host_id)
+file=$out/$HOST-$host_id[1,8].tsv
+tmp=$data/export.tsv.tmp
+
+# Keep exporting local history if the server can't be reached.
+atuin sync || print -u2 'atuin sync failed; exporting local history anyway'
+
+mkdir -p $out
+sqlite3 -readonly -noheader -separator $'\t' $data/history.db "
+	select strftime('%Y-%m-%dT%H:%M:%SZ', timestamp / 1000000000, 'unixepoch'),
+		exit,
+		case when duration < 0 then -1 else duration / 1000000 end,
+		hostname,
+		cwd,
+		replace(replace(replace(command, '\\', '\\\\'), char(10), '\\n'), char(9), '\\t')
+	from history
+	where deleted_at is null
+	order by timestamp
+" > $tmp
+
+if cmp -s $tmp $file; then
+	command rm -f $tmp
+else
+	command mv -f $tmp $file
+fi
